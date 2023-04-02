@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Providers List</h2>
+  <button type="button" class="btn btn-outline-primary" (click)="newProvider()">Add a new provider</button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Mail</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let provider of providers">
+        <th scope="row">{{provider.id}}</th>
+        <td>{{provider.Nombre}}</td>
+        <td>{{provider.Telefono}}</td>
+        <td>{{provider.Mail}}</td>
+        <td>
+            <button type="button" class="btn btn-outline-primary" (click)="editProvider(provider.id)">Edit</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteProvider(provider.id)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

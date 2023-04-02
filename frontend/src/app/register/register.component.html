@@ -1,0 +1,88 @@
+<h2>Providers Register</h2>
+<form class="container" [formGroup]="frmRegistrarProducto">
+  <div class="form-group">
+    <label for="txtNombre">Name</label>
+    <input
+      formControlName="nombre"
+      placeholder="Introduzca el nombre del producto"
+      type="text"
+      class="form-control"
+      id="txtNombre"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtLocalidad">Location</label>
+    <input
+      formControlName="localidad"
+      placeholder="Introduzca la localidad"
+      type="text"
+      class="form-control"
+      id="txtLocalidad"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtTelefono">Phone</label>
+    <input
+      formControlName="telefono"
+      placeholder="Introduzca un teléfono"
+      type="text"
+      class="form-control"
+      id="txtTelefono"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtMail">e-Mail</label>
+    <input
+      formControlName="mail"
+      placeholder="Introduzca un e-Mail"
+      type="text"
+      class="form-control"
+      id="txtMail"
+    />
+  </div>
+  <div class="form-group">
+    <label for="ddlCategorias">Category</label>
+    <select
+      #ddlCategorias
+      class="form-control"
+      id="ddlCategorias"
+      (change)="getProductosPorCategoria(ddlCategorias.value)"
+    >
+      <option>Seleccione una categorías</option>
+      <option *ngFor="let categoria of categorias" value="{{ categoria.id }}">{{
+        categoria.descripcion
+      }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="productos">
+    <label for="ddlCategorias">Productos</label>
+    <select class="form-control" id="ddlProductos" formControlName="productoID">
+      <option>Seleccione una producto</option>
+      <option *ngFor="let producto of productos" value="{{ producto.id }}">{{
+        producto.descripcion
+      }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="txtPasswor">Password</label>
+    <input
+      formControlName="contraseña"
+      type="password"
+      class="form-control"
+      id="txtPasswor"
+      placeholder="Introduzca su contraseña"
+    />
+  </div>
+  <button type="button" class="btn btn-primary" (click)="guardarProveedor()">
+    Register a new provider
+  </button>
+  <div class="alert alert-info" role="alert" *ngIf="guardando">
+    Guardando datos. Espere un momento por favor..
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="guardadoOK">
+    {{ mensaje }}
+  </div>
+</form>

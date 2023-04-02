@@ -1,0 +1,88 @@
+<h2>Editar un proveedor</h2>
+<form class="container" [formGroup]="frmActualizarProveedor">
+  <div class="form-group">
+    <label for="txtNombre">Nombre</label>
+    <input
+      formControlName="nombre"
+      placeholder="Introduzca el nombre del producto"
+      type="text"
+      class="form-control"
+      id="txtNombre"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtLocalidad">Localidad</label>
+    <input
+      formControlName="localidad"
+      placeholder="Introduzca la localidad"
+      type="text"
+      class="form-control"
+      id="txtLocalidad"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtTelefono">Telefóno</label>
+    <input
+      formControlName="telefono"
+      placeholder="Introduzca un teléfono"
+      type="text"
+      class="form-control"
+      id="txtTelefono"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="txtMail">e-Mail</label>
+    <input
+      formControlName="mail"
+      placeholder="Introduzca un e-Mail"
+      type="text"
+      class="form-control"
+      id="txtMail"
+    />
+  </div>
+  <div class="form-group">
+    <label for="ddlCategorias">Categorías</label>
+    <select
+      formControlName="categoria"
+      #ddlCategorias
+      class="form-control"
+      id="ddlCategorias"
+      (change)="getProductosPorCategoria(ddlCategorias.value)"
+    >
+      <option>Seleccione una categorías</option>
+      <option *ngFor="let categoria of categorias" value="{{ categoria.id }}">{{
+        categoria.descripcion
+      }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="productos">
+    <label for="ddlCategorias">Productos</label>
+    <select class="form-control" id="ddlProductos" formControlName="productoID">
+      <option>Seleccione una producto</option>
+      <option *ngFor="let producto of productos" value="{{ producto.id }}">{{
+        producto.descripcion
+      }}</option>
+    </select>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="guardarProveedor()">
+    Actualizar Proveedor
+  </button>
+  <button
+    style="margin-left: 10px;"
+    type="button"
+    class="btn btn-secondary"
+    (click)="volverAlListado()"
+  >
+    Volver al listado
+  </button>
+  <div class="alert alert-info" role="alert" *ngIf="guardando">
+    Guardando datos. Espere un momento por favor..
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="guardadoOK">
+    {{ mensaje }}
+  </div>
+</form>
